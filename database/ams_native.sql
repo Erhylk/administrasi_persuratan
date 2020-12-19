@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 21, 2018 at 08:59 AM
--- Server version: 10.3.11-MariaDB-1:10.3.11+maria~xenial-log
--- PHP Version: 7.2.12-1+ubuntu16.04.1+deb.sury.org+1
+-- Host: localhost:3306
+-- Waktu pembuatan: 19 Des 2020 pada 07.55
+-- Versi server: 5.7.24
+-- Versi PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_disposisi`
+-- Struktur dari tabel `tbl_disposisi`
 --
 
 CREATE TABLE `tbl_disposisi` (
@@ -42,7 +42,7 @@ CREATE TABLE `tbl_disposisi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_instansi`
+-- Struktur dari tabel `tbl_instansi`
 --
 
 CREATE TABLE `tbl_instansi` (
@@ -60,16 +60,16 @@ CREATE TABLE `tbl_instansi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_instansi`
+-- Dumping data untuk tabel `tbl_instansi`
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
-(1, 'Dinas Pendidikan Pemuda Dan Olahraga', 'SMK MasRud.com', 'Terakreditasi A', 'Sawahan, Nganjuk, Jawa Timur', 'M. Rudianto', '-', 'https://masrud.com', 'rudi@masrud.com', 'logo.png', 1);
+(1, 'PEMERINTAH KABUPATEN BULUKUMBA', 'Desa Tibona', 'KECAMATAN BULUKUMPA', 'Desa Tibona, Kec. Bulukumpa', 'Abdullah S.H', '-', 'http://www.websitedesa.co.id', 'erhylksym@gmail.com', 'Bulukumba_Regency_Logo.png', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_klasifikasi`
+-- Struktur dari tabel `tbl_klasifikasi`
 --
 
 CREATE TABLE `tbl_klasifikasi` (
@@ -83,7 +83,7 @@ CREATE TABLE `tbl_klasifikasi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_sett`
+-- Struktur dari tabel `tbl_sett`
 --
 
 CREATE TABLE `tbl_sett` (
@@ -95,7 +95,7 @@ CREATE TABLE `tbl_sett` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_sett`
+-- Dumping data untuk tabel `tbl_sett`
 --
 
 INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `id_user`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_surat_keluar`
+-- Struktur dari tabel `tbl_surat_keluar`
 --
 
 CREATE TABLE `tbl_surat_keluar` (
@@ -121,10 +121,17 @@ CREATE TABLE `tbl_surat_keluar` (
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `tbl_surat_keluar`
+--
+
+INSERT INTO `tbl_surat_keluar` (`id_surat`, `no_agenda`, `tujuan`, `no_surat`, `isi`, `kode`, `tgl_surat`, `tgl_catat`, `file`, `keterangan`, `id_user`) VALUES
+(2, 1, 'jakarta', '12345', 'coba', '12', '2020-12-24', '2020-12-03', '8404-photo_2020-10-20_11-04-42.jpg', 'coba', 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_surat_masuk`
+-- Struktur dari tabel `tbl_surat_masuk`
 --
 
 CREATE TABLE `tbl_surat_masuk` (
@@ -142,10 +149,17 @@ CREATE TABLE `tbl_surat_masuk` (
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `tbl_surat_masuk`
+--
+
+INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `id_user`) VALUES
+(4, 1, '175.A', 'Bulukumba', 'Surat mahasiswa', '12345', '12345', '2020-12-18', '2020-12-17', '1785-7313729.jpg', '12345', 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_user`
+-- Struktur dari tabel `tbl_user`
 --
 
 CREATE TABLE `tbl_user` (
@@ -158,91 +172,92 @@ CREATE TABLE `tbl_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_user`
+-- Dumping data untuk tabel `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`) VALUES
-(1, 'masrud', '7d05dc02abe9cda729d0c798c886db47', 'M. Rudianto', '-', 1);
+(1, 'Admin', 'a4cb45c98c396a447ad0a00944a98c3a', 'Admin Desa Tibona', '-', 1),
+(3, 'Erilsym', '827ccb0eea8a706c4c34a16891f84e7b', 'MUH KHAERIL SYAM', '2072703980003', 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_disposisi`
+-- Indeks untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
   ADD PRIMARY KEY (`id_disposisi`);
 
 --
--- Indexes for table `tbl_instansi`
+-- Indeks untuk tabel `tbl_instansi`
 --
 ALTER TABLE `tbl_instansi`
   ADD PRIMARY KEY (`id_instansi`);
 
 --
--- Indexes for table `tbl_klasifikasi`
+-- Indeks untuk tabel `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
   ADD PRIMARY KEY (`id_klasifikasi`);
 
 --
--- Indexes for table `tbl_sett`
+-- Indeks untuk tabel `tbl_sett`
 --
 ALTER TABLE `tbl_sett`
   ADD PRIMARY KEY (`id_sett`);
 
 --
--- Indexes for table `tbl_surat_keluar`
+-- Indeks untuk tabel `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
   ADD PRIMARY KEY (`id_surat`);
 
 --
--- Indexes for table `tbl_surat_masuk`
+-- Indeks untuk tabel `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
   ADD PRIMARY KEY (`id_surat`);
 
 --
--- Indexes for table `tbl_user`
+-- Indeks untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbl_disposisi`
+-- AUTO_INCREMENT untuk tabel `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
   MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_klasifikasi`
+-- AUTO_INCREMENT untuk tabel `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
-  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_surat_keluar`
+-- AUTO_INCREMENT untuk tabel `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tbl_surat_masuk`
+-- AUTO_INCREMENT untuk tabel `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbl_user`
+-- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
